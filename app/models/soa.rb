@@ -45,12 +45,12 @@ class SOA < Record
 
     # Same day change?
     increment = if date_segment == self.serial.to_s[0,8]
-      increment = self.serial.to_s[9,2].succ
+      increment = self.serial.to_s[8,2].succ
     else
       "01"
     end
 
-    self.serial = ( date_segment + increment.rjust(2, "0") ).to_i
+    self.serial = ( date_segment + increment[-2,2] ).to_i
     
   end
   
