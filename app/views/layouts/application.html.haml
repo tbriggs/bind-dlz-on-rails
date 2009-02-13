@@ -8,8 +8,6 @@
   %body
     #Container
       #Header
-        %h1
-          BIND DLZ on Rails
       - if current_user
         #search-bar{:style => "display: inline; float: right;"}
           - form_tag( { :controller => :search, :action => :results }, { :method => :get } ) do |f|
@@ -32,13 +30,3 @@
         = show_flash
 
         = yield
-      #Footer
-        = link_to "BIND DLZ on Rails", "http://www.opensourcery.co.za/bind-dlz-on-rails", :target => '_blank'
-        \- &copy; Clear Planet Information Solutions (Pty) Ltd
-        %br
-        Released under the MIT License.
-        %br
-        %br
-        = link_to "Report Bugs", "http://kennethkalmer.lighthouseapp.com/projects/11831-bind-dlz-on-rails", :target => '_blank'
-        \-
-        = link_to "Github", "http://github.com/kennethkalmer/bind-dlz-on-rails/tree", :target => '_blank'

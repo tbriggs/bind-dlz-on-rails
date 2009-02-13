@@ -11,10 +11,8 @@ body {
     margin: 0 auto;
 }
 #Header {
-    height: 80px;
-    background-image: url(/images/top-background.png);
-    background-repeat: repeat-x;
-    padding-left: 20px;
+    height: 73px;
+    background-image: url(/images/APILogo.png);
 }
 #Header h1 {
     padding: 0;

@@ -1,4 +1,8 @@
+require 'net/ssh'
 class ZonesController < ApplicationController
+
+  after_filter :create_zone_slave, :only => [:create, :update]
+  after_filter :remove_zone_slave, :only => [:destroy]
   
   require_role [ "admin", "owner" ]
   
@@ -69,5 +73,5 @@ class ZonesController < ApplicationController
     @zone = Zone.find( params[:id] )
     @zone.update_attribute( :notes, params[:zone][:notes] )
   end
-  
+
 end

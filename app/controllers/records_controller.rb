@@ -1,6 +1,8 @@
+require 'net/ssh'
 class RecordsController < ApplicationController
-  
+
   before_filter :get_zone
+  after_filter :reload_zone_slave, :only => [:create, :update, :destroy]
   
   def new
     @record = @zone.records.new
@@ -9,9 +11,9 @@ class RecordsController < ApplicationController
   def create
     @record = @zone.send( "#{params[:record][:type].downcase}_records".to_sym ).new( params[:record] )
     if @record.save
-      flash[:info] = "Record created!"
+      flash.now[:info] = "Record created!"
     else
-      flash[:error] = "Record not created!"
+      flash.now[:error] = "Record not created!"
       render :action => :new
     end
   end
@@ -51,4 +53,5 @@ class RecordsController < ApplicationController
   def get_zone
     @zone = Zone.find(params[:zone_id], :user => current_user)
   end
+
 end
